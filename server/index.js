@@ -3,27 +3,23 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import path from 'path';
+import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import 'express-async-errors';
-import connectDB from './db.js';
-import authRoutes    from './routes/auth.routes.js';
+import connectDB    from './db.js';
+import authRoutes   from './routes/auth.routes.js';
 import productRoutes from './routes/product.routes.js';
-import orderRoutes   from './routes/order.routes.js';
+import orderRoutes  from './routes/order.routes.js';
 import paymentRoutes from './routes/payment.routes.js';
-import adminRoutes   from './routes/admin.routes.js';
-import { initSocket } from './socket/socket.js';
-import { errorHandler } from './middleware/error.middleware.js';
+import adminRoutes  from './routes/admin.routes.js';
+import { initSocket }    from './socket/socket.js';
+import { errorHandler }  from './middleware/error.middleware.js';
 
 dotenv.config();
 connectDB();
 
 const __filename = fileURLToPath(import.meta.url);
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';   // add dirname here
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname  = dirname(__filename);  // this was missing dirname import
+const __dirname  = dirname(__filename);
 
 const app        = express();
 const httpServer = createServer(app);
